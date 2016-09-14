@@ -1,0 +1,19 @@
+body{
+	padding: 10px 0px;
+}
+div{
+	width:95%;
+	margin: 2px auto;
+}
+#articleTitle,#articleTip{
+	width: 400px;
+}
+.titleText{
+	margin: 20px auto;
+}
+.tip{
+	margin: 20px auto;
+}
+#send{
+	margin: 10px auto;
+}
