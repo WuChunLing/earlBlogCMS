@@ -15,9 +15,11 @@ $(document).ready(function() {
 				function(data){
 					if(data.mess=="success")
 	                {				
-						
+						sessionStorage.userName = data.userName;//将变量存储到本地sessionStorage
+						sessionStorage.userAcount = data.userAcount;
+						sessionStorage.userPassword = data.userPassword; 
 						window.location.href='../blogCMS.html';
-						sessionStorage.userName = data.userName;//将变量存储到本地sessionStorage中，并且value为adminId 
+						
 					}
 					else
 					{
