@@ -46,6 +46,14 @@
         var content = UE.getEditor('editor').getContent();
         return content;
     }
+    
+    //写入内容
+    function setContent(title,content,tag) {
+        UE.getEditor('editor').setContent(content);
+        $("#articleTitle").val(title);
+        $("#articleTip").val(tag);
+    }
+
 </script>
 </body>
 </html>

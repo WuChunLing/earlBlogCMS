@@ -38,6 +38,28 @@ jQuery(document).ready(function($) {
 		var text = sessionStorage.userName;
 		getArticle(url,page,20,text);
 	});
+
+	// 修改文章
+	$("#myArticleTable").on('click', '.update', function(){
+		var i = this.id;
+		sessionStorage.id = myArticle[i][0];
+		sessionStorage.title = myArticle[i][1];
+		sessionStorage.tag = myArticle[i][8];
+		sessionStorage.main = myArticle[i][2];
+	});
+
+	// 删除文章
+	$("#myArticleTable").on('click', '.delete', function(){
+		var i = this.id;
+		var url = "删除的接口";
+		var articleId = myArticle[i][0];
+		$.post(url, {id:articleId}, function(data) {
+			alert("删除成功");
+			getArticle(url,1,20,null);//获取第一页的文章列表信息
+		});
+
+	});
+
 });
 
 // 从接口接收文章
@@ -90,7 +112,7 @@ function put(article,tag,articleNum,index){
 	
 	var str = '';
 	for(var i=0;i<articleNum;i++){
-		str += '<tr><td><a href="./showArticle.html" class="showList" id='+i+' >'+article[i][1]+'</a></td>'+'<td>'+article[i][7] +'</td><td>'+'<span class="glyphicon glyphicon-eye-open">&nbsp;'+article[i][4]+'&nbsp;&nbsp;</span>'+'</td>'+'<td><a class="update"  id='+i+'>修改</a>&nbsp;&nbsp;&nbsp;<a class="delete" id='+i+'>删除</a></td>'+'</tr>';
+		str += '<tr><td><a href="./showArticle.html" class="showList" id='+i+' >'+article[i][1]+'</a></td>'+'<td>'+article[i][7] +'</td><td>'+'<span class="glyphicon glyphicon-eye-open">&nbsp;'+article[i][4]+'&nbsp;&nbsp;</span>'+'</td>'+'<td><a class="update" href="./edit/index.html" id='+i+'>修改</a>&nbsp;&nbsp;&nbsp;<a class="delete" id='+i+'>删除</a></td>'+'</tr>';
 	}
 	$("#myArticleTable").empty().append(str);
 	
@@ -117,17 +139,5 @@ function getPage(totalPage,index){
 	}
 }
 
-// 修改文章
-// 删除文章
-$("#myArticleTable").on('click', '.delete', function(){
-	var i = this.id;
-	var url = " ";
-	var articleId = article[i][0];
-	$.post(url, {id:articleId}, function(data) {
-		alert(data);
-		getArticle(url,1,20,null);//获取第一页的文章列表信息
-	});
-
-});
 
 
